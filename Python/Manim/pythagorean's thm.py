@@ -1,4 +1,15 @@
 from manim import *
+from pathlib import Path
+import os
+
+FLAGS = f"-pql"
+SCENE = "MyScene"
+
+if __name__ == '__main__':
+  script_name=f"{Path(__file__).resolve()}"
+  os.system(f"manim {script_name} {SCENE} {FLAGS}")
+
+
 
 class MyScene(Scene):
   def construct(self):
