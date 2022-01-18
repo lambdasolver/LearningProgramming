@@ -66,7 +66,7 @@ class MyScene(Scene):
 
     text4=MathTex(r"c^2=a^2+b^2").to_edge(DOWN).scale(2)
 
-    text5=MathTex(r"Pythagorean's\ Theorem").to_edge(DOWN).scale(2)
+    text5=MathTex(r"Pythagorean\ Theorem").to_edge(DOWN).scale(2)
 
 
 
