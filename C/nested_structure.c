@@ -18,4 +18,4 @@ void main()
     printf(" Enter student information \n");
     scanf("%s %s %d %s", s.name, s.add.city, &s.add.pin, s.add.phone);
     printf(" Printing the employee information .\n");
-    printf(" name : %s\ nCity : %s\ nPincode : %d\ nPhone : %s", s.name, s.add.city, s.add.pin, s.add.phone);
+    printf(" name : %s\nCity : %s\nPincode : %d\nPhone : %s", s.name, s.add.city, s.add.pin, s.add.phone);
