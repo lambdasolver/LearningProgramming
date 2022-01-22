@@ -16,8 +16,8 @@ int main()
     scanf("%d", &ps -> roll);
     printf(" Enter Marks : ");
     scanf("%f", &ps -> mks);
-    printf("\ nName : %s", ps->name);
-    printf("\ nPrice : %d", ps->roll);
-    printf("\ nQuantity : %f", ps->mks);
+    printf("\nName : %s", ps->name);
+    printf("\nPrice : %d", ps->roll);
+    printf("\nQuantity : %f", ps->mks);
     return 0;
 }
