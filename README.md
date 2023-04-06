@@ -6,4 +6,5 @@ Till Now i am only learning
  - Haskell
  - Python
      - Manim
+ - Java
  - Julia
