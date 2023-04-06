@@ -1,0 +1,217 @@
+                  Programming Language Concepts
+                          Jan-Apr 2023
+                          Assignment 2
+
+		   Due Monday, 3 April, 2023
+
+The new CMI amusement park coming up at Siruseri will have a
+bumper car ride where people drive cars that bang and bounce off
+each other on a special driving floor.  Each car holds one rider.
+At most five cars are allowed on the driving floor at a time.
+
+Cars and riders are identified by unique integer ids.  Empty cars
+and riders waiting for a ride form two separate queues.
+Initially, the cars are lined up in order 1,2,...,M, where M is
+the total number of cars available.
+
+The length of each rider's ride on the floor is fixed randomly
+when the rider enters the waiting queue.  When there are fewer
+than five cars on the floor, the first rider in the rider queue
+gets into the first car in the car queue, goes onto the floor and
+rides for the specified length of the time.
+
+After the ride is over, the car returns to the rear end of the
+car queue.  The rider gets off.  The empty car stays in queue and
+will be used again when it comes to the front of the queue.
+
+The rider who has got off walks around the park for a random
+amount of time before rejoining the line for his next ride.  Each
+rider takes between 2 and 4 rides before going home.
+
+Write a Java class DrivingFloor that coordinates the rider and
+car queues and services all riding requests.  Riders line up by
+calling the method
+
+  takeAride (int rider_id, int ride_time)
+
+where rider_id is the integer id of the rider and ride_time is
+the length of time that this rider's ride will last.
+
+The method takeAride should print out diagnostic messages about
+the status of the riders and cars at the following times:
+
+1. When a rider joins the line.
+  
+   e.g.
+
+   Rider 15 joins queue at Sat Mar 18 11:25:07 IST 2023
+   Rider queue : [4,11,3,13,2,15]
+   Car queue : [6,7,8,9,10]
+   Cars on floor: 5
+
+2. When a rider gets into the car and starts a ride.
+
+   e.g.
+
+   Rider 4 starts ride in car 6 at Sat Mar 18 11:25:09 IST 2023
+   Rider queue : [11,3,13,2,15,14,12,10,9,8,17,16]
+   Car queue : [7,8,9,10,3]
+   Cars on floor: 5
+
+3. When a rider finishes the ride.
+
+   e.g.
+
+   Rider 6 finishes ride at Sat Mar 18 11:25:09 IST 2023
+   Car 3 joins queue at Sat Mar 18 11:25:09 IST 2023
+   Rider queue : [4,11,3,13,2,15,14,12,10,9,8,17,16]
+   Car queue : [6,7,8,9,10,3]
+   Cars on floor: 4
+
+To print out the time in the diagnostic message, use the class
+java.util.Date as follows.
+
+
+   ...
+   Date date;
+   ...
+   date = new Date();
+   System.out.println("..."+date);
+
+
+Hint
+----
+
+The class DrivingFloor maintains the state of the system: which
+cars and riders are in queue and who is on the driving floor.
+Implement
+
+   takeAride (int rider_id, int ride_time)
+
+using a sequence of synchronized methods that ensure that all
+changes of state are made in a safe manner.
+
+The ride itself is modelled using Thread.sleep();
+
+Sample output
+-------------
+
+Rider 0 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Rider queue: [0]
+Cars on the floor: 0
+
+Rider 12 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Rider queue: [0, 12]
+Cars on the floor: 0
+
+Rider 0 starts ride in car 1 at Tue Mar 21 19:41:29 IST 2023
+Car queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+Rider queue: [12]
+Cars on the floor: 1
+
+Rider 11 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+Rider queue: [12, 11]
+Cars on the floor: 1
+
+Rider 12 starts ride in car 2 at Tue Mar 21 19:41:29 IST 2023
+Car queue: [3, 4, 5, 6, 7, 8, 9, 10]
+Rider queue: [11]
+Cars on the floor: 2
+
+Rider 10 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [3, 4, 5, 6, 7, 8, 9, 10]
+Rider queue: [11, 10]
+Cars on the floor: 2
+
+Rider 11 starts ride in car 3 at Tue Mar 21 19:41:29 IST 2023
+Car queue: [4, 5, 6, 7, 8, 9, 10]
+Rider queue: [10]
+Cars on the floor: 3
+
+Rider 9 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [4, 5, 6, 7, 8, 9, 10]
+Rider queue: [10, 9]
+Cars on the floor: 3
+
+Rider 10 starts ride in car 4 at Tue Mar 21 19:41:29 IST 2023
+Car queue: [5, 6, 7, 8, 9, 10]
+Rider queue: [9]
+Cars on the floor: 4
+
+Rider 6 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [5, 6, 7, 8, 9, 10]
+Rider queue: [9, 6]
+Cars on the floor: 4
+
+Rider 9 starts ride in car 5 at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6]
+Cars on the floor: 5
+
+Rider 8 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6, 8]
+Cars on the floor: 5
+
+Rider 7 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6, 8, 7]
+Cars on the floor: 5
+
+Rider 5 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6, 8, 7, 5]
+Cars on the floor: 5
+
+Rider 4 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6, 8, 7, 5, 4]
+Cars on the floor: 5
+
+Rider 3 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6, 8, 7, 5, 4, 3]
+Cars on the floor: 5
+
+Rider 2 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6, 8, 7, 5, 4, 3, 2]
+Cars on the floor: 5
+
+Rider 1 joins queue at Tue Mar 21 19:41:29 IST 2023
+Car queue: [6, 7, 8, 9, 10]
+Rider queue: [6, 8, 7, 5, 4, 3, 2, 1]
+Cars on the floor: 5
+
+Rider 9 finishes ride at Tue Mar 21 19:41:30 IST 2023
+Car 4 joins queue at Tue Mar 21 19:41:30 IST 2023
+Car queue: [6, 7, 8, 9, 10, 4]
+Rider queue: [6, 8, 7, 5, 4, 3, 2, 1]
+Cars on the floor: 4
+
+...
+
+======================================================================
+
+Attached are two files:
+
+1. Rider.java:  defines a Rider class that implements Runnable
+
+   -- The instance variables define a distinct numeric id for
+      each rider, the number of times this rider will take a ride
+      and a reference to the Driving Floor to be used.
+
+   -- Each rider performs a loop consisting of taking a ride
+      using the method takeAride(...) followed by a walk around
+      the amusement park, modelled by sleeping.
+
+2. Assignment2.java: Creates a random number of Riders and sets them
+      off in parallel.
+
+Add your class DrivingFloor.java and compile and run
+Assignment2.java to test your code.
+
+======================================================================
